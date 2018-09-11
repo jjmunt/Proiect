@@ -1,0 +1,64 @@
+<ons-page>
+	<ons-toolbar>
+		<div class="center" id="toolbar-title"></div>
+	</ons-toolbar>
+	<div id="qrcode1" style="margin: 10px auto; width: 200px; height: 200px;"></div>
+	<p style="padding: 10px">
+		<ons-button modifier="large" id="scan">Scanare cod QR</ons-button>
+	</p>
+	<p style="padding: 10px;">Alegeți un simbol și apăsați '+': </p>
+	<p style="text-align: center">
+		<ons-select id="idpart">
+			<option value="a">litera A</option>
+			<option value="b">litera B</option>
+			<option value="c">litera C</option>
+			<option value="d">litera D</option>
+			<option value="e">litera E</option>
+			<option value="f">F</option>
+		</ons-select>
+		<ons-fab id="adauga" style="margin-left: 20px;">
+			<ons-icon icon="md-plus"></ons-icon>
+		</ons-fab>
+	</p>
+	<script>
+		ons.getScriptPage().onInit = function() {
+         // Hooks are bound to the page element
+         this.querySelector('#toolbar-title').innerHTML = 'Înregistrare';
+         this.onShow = function() {
+            var codact = localStorage.getItem("codact");
+            if (codact) {
+               let imagine = this.querySelector('#qrcode1');
+               imagine.innerHTML = ""; //  Golesc blocul #qrcode1
+               //  Desenez codul in blocul #qrcode
+               new QRCode(imagine, {
+                  text: codact,
+                  width: 200,
+                  height: 200,
+                  colorDark : "#000000",
+                  colorLight : "#ffffff",
+                  correctLevel : QRCode.CorrectLevel.H
+               });
+            }
+         }
+      };
+
+      document.querySelector("#scan").onclick = function () {
+         window.plugins.barcodeScanner.scan(function (result) {
+            let imagine = this.querySelector('#qrcode1');
+            imagine.innerHTML = ""; //  Golesc blocul #qrcode1
+            new QRCode(imagine, {
+               text: result.text,
+               width: 200,
+               height: 200,
+               colorDark : "#000000",
+               colorLight : "#ffffff",
+               correctLevel : QRCode.CorrectLevel.H
+            });
+            localStorage.setItem("codact", result.text);
+         }, function (error) {
+            alert("Scanning failed: " + error);
+         }
+         );
+      };
+	</script>
+</ons-page>
