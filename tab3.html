@@ -1,18 +1,18 @@
 <ons-page id="tab3">
-	<ons-toolbar>
-		<div class="center" id="toolbar-title"></div>
-	</ons-toolbar>
-	<div id="qrcode2" style="margin: 10px auto; width: 200px; height: 200px;"></div>
-	<p style="padding: 10px">
-		<ons-button modifier="large" id="decl">Activitate nouă</ons-button>
-	</p>
-	<script>
-		ons.getScriptPage().onInit = function() {
+   <ons-toolbar>
+      <div class="center" id="toolbar-title"></div>
+   </ons-toolbar>
+   <div id="qrcode2" style="margin: 10px auto; width: 200px; height: 200px;"></div>
+   <p style="padding: 10px">
+      <ons-button modifier="large" id="decl">Activitate nouă</ons-button>
+   </p>
+   <script>
+      ons.getScriptPage().onInit = function() {
          // Hooks are bound to the page element
          this.querySelector('#toolbar-title').innerHTML = 'Activitate nouă';
          
          this.onShow = function() {
-            var codact = localStorage.getItem("codact");
+            let codact = localStorage.getItem("codact");
             if (codact) {
                let imagine = this.querySelector('#qrcode2');
                imagine.innerHTML = ""; //  Golesc blocul #qrcode2
@@ -52,7 +52,7 @@
             });
             
             //  Memorez noul codact
-         localStorage.setItem("codact", obj.codact);
+            localStorage.setItem("codact", obj.codact);
          };
 
          // S-a produs o eroare
@@ -62,5 +62,6 @@
 
          request.send();
       };
-	</script>
+   </script>
 </ons-page>
+
