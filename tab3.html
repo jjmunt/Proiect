@@ -1,67 +1,60 @@
 <ons-page id="tab3">
-   <ons-toolbar>
-      <div class="center" id="toolbar-title"></div>
-   </ons-toolbar>
-   <div id="qrcode2" style="margin: 10px auto; width: 200px; height: 200px;"></div>
-   <p style="padding: 10px">
-      <ons-button modifier="large" id="decl">Activitate nouă</ons-button>
-   </p>
-   <script>
-      ons.getScriptPage().onInit = function() {
-         // Hooks are bound to the page element
-         this.querySelector('#toolbar-title').innerHTML = 'Activitate nouă';
-         
-         this.onShow = function() {
-            let codact = localStorage.getItem("codact");
-            if (codact) {
-               let imagine = this.querySelector('#qrcode2');
-               imagine.innerHTML = ""; //  Golesc blocul #qrcode2
-               //  Desenez codul in blocul #qrcode2
-               new QRCode(imagine, {
-                  text: codact,
-                  width: 200,
-                  height: 200,
-                  colorDark : "#000000",
-                  colorLight : "#ffffff",
-                  correctLevel : QRCode.CorrectLevel.H
-               });
-            }
-         }
-      };
-
-      //  Declarare activitate noua
-      document.querySelector("#decl").onclick = function () {
-         //  AJAX: Apelez scriptul "adactiv.php"
-         var request = new XMLHttpRequest();
-         request.open("POST", "http://aplimob.net/proiect/adactiv.php");
-      
-         // S-au primit date de la scriptul de pe server
-         request.onload = function() {
+	<ons-toolbar>
+		<div class="center" id="toolbar-title">Activitate nouă</div>
+	</ons-toolbar>
+	<div id="qrcode2" style="margin: 10px auto; width: 200px; height: 200px;"></div>
+	<p style="padding: 10px">
+		<ons-button modifier="large" id="decl">Activitate nouă</ons-button>
+	</p>
+	<script>
+        let tab3 = document.querySelector("#tab3");
+        let codact = localStorage.getItem("codact");
+        if (codact) {
             let imagine = document.querySelector('#qrcode2');
-            imagine.innerHTML = "";  //  Golesc blocul #qrcode2
-            let obj = JSON.parse(this.responseText);
-            //  ons.notification.alert('Cod ' + obj.codact);
-            //  Desenez noul cod QR in blocul #qrcode2
+            imagine.innerHTML = ""; //  Golesc blocul #qrcode2
+            //  Desenez codul in blocul #qrcode2
             new QRCode(imagine, {
-               text: obj.codact,
-               width: 200,
-               height: 200,
-               colorDark : "#000000",
-               colorLight : "#ffffff",
-               correctLevel : QRCode.CorrectLevel.H
+                text: codact,
+                width: 200,
+                height: 200,
+                colorDark: "#000000",
+                colorLight: "#ffffff",
+                correctLevel: QRCode.CorrectLevel.H
             });
-            
-            //  Memorez noul codact
-            localStorage.setItem("codact", obj.codact);
-         };
+        }
 
-         // S-a produs o eroare
-         request.onerror = function() {
-            alert('Hopa! Ceva n-a mers!');
-         };
+        //  Declarare activitate noua
+        document.querySelector("#decl").onclick = function () {
+            //  AJAX: Apelez scriptul "adactiv.php"
+            var request = new XMLHttpRequest();
+            request.open("POST", "http://aplimob.net/proiect/adactiv.php");
 
-         request.send();
-      };
-   </script>
+            // S-au primit date de la scriptul de pe server
+            request.onload = function () {
+                let imagine = document.querySelector('#qrcode2');
+                imagine.innerHTML = "";  //  Golesc blocul #qrcode2
+                let obj = JSON.parse(this.responseText);
+                //  ons.notification.alert('Cod ' + obj.codact);
+                //  Desenez noul cod QR in blocul #qrcode2
+                new QRCode(imagine, {
+                    text: obj.codact,
+                    width: 200,
+                    height: 200,
+                    colorDark: "#000000",
+                    colorLight: "#ffffff",
+                    correctLevel: QRCode.CorrectLevel.H
+                });
+
+                //  Memorez noul codact
+                localStorage.setItem("codact", obj.codact);
+            };
+
+            // S-a produs o eroare
+            request.onerror = function () {
+                alert('Hopa! Ceva n-a mers!');
+            };
+
+            request.send();
+        };
+	</script>
 </ons-page>
-

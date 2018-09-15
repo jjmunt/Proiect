@@ -8,8 +8,8 @@ Coordonatorul activității propune o parte a soluției urmând ca dezvoltarea p
 
 ### Înainte de a începe...
 
-Porțiunea din proiect disponibilă pe GitHub conține 4 fișiere în format HTML: *index.html*, *tab1.html*, *tab2.html* și *tab3.html*. De asemenea este disponibil directorul *js* care conține fișierele *index.js* și *qrcode.js*. Pentru a putea contribui, este necesar să aveți un cont pe platforma Monaca.io, să creați acolo proiectul (denumirea este neimportantă) de tip *Framework Templates / OnsenUI / Onsen UI V2 + JavaScript Tabbar*.
-În directorul rădăcină (*www*) adăugați subdirectorul *js* cu fișierele conținute și fișierele în format HTML. Adăugati apoi proiectului două extensii Cordova: *Geolocation* și *BarcodeScanner*.
+Porțiunea din proiect disponibilă pe GitHub conține 4 fișiere în format HTML: *index.html*, *tab1.html*, *tab2.html* și *tab3.html*. De asemenea este disponibil directorul *js* care conține fișierul *qrcode.js*. Pentru a putea contribui, este necesar să aveți un cont pe platforma Monaca.io, să creați acolo proiectul (denumirea este neimportantă) de tip *Framework Templates / OnsenUI / Onsen UI V2 + JavaScript Tabbar*.
+În directorul rădăcină (*www*) adăugați subdirectorul *js* cu fișierul conținut și fișierele în format HTML. Adăugati apoi proiectului două extensii Cordova: *Geolocation* și *BarcodeScanner*.
 
 ### Realizarea completărilor
 
