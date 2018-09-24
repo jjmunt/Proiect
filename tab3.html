@@ -27,6 +27,8 @@
         document.querySelector("#decl").onclick = function () {
             //  AJAX: Apelez scriptul "adactiv.php"
             var request = new XMLHttpRequest();
+            var formData =new FormData();
+            formData.append('uid', device.uuid);
             request.open("POST", "http://aplimob.net/proiect/adactiv.php");
 
             // S-au primit date de la scriptul de pe server
