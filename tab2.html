@@ -58,5 +58,26 @@
          }
          );
       };
+
+      document.querySelector("#adauga").onclick = function () {
+          var formData = new FormData();
+       formData.append('cod', codact);
+       formData.append('idpart', document.querySelector("#idpart").value);
+       formData.append('lat', centru.lat);
+       formData.append('lng', centru.lng);
+         var request = new XMLHttpRequest();
+   request.open("POST", "http://aplimob.net/proiect/adpart.php");
+ // S-au primit date de la scriptul de pe server
+     request.onload = function () {
+ // Alert inregistrat
+     ons.notification.alert('Participat inregistrat cu succes.');
+ };
+
+ // S-a produs o eroare
+ request.onerror = function () {
+ alert('Hopa! Ceva n-a mers!');
+ };
+ request.send(formData);
+ }
 	</script>
 </ons-page>
